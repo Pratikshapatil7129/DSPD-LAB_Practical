@@ -1,2 +1,2 @@
 # DSPD-LAB_Practical
-#Praactical-1A
+# Praactical-1A
