@@ -94,7 +94,7 @@ int main() {
                 display();
                 break;
             case 5:
-                printf("Exiting program. Goodbye!\n");
+                printf("Exiting program.\n");
                 return 0;
             default:
                 printf("Invalid choice! Please try again.\n");
@@ -103,3 +103,4 @@ int main() {
 
     return 0;
 }
+
