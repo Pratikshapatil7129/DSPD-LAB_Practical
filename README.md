@@ -1,7 +1,7 @@
 # DSPD-LAB_Practical
 
 ## Practical List
-  ### 1A -Write a program to accept ‘n’ numbers into an array and then calculate the sum of numbers present in odd positions and even positions respectively.
+  #### 1A -Write a program to accept ‘n’ numbers into an array and then calculate the sum of numbers present in odd positions and even positions respectively.
 
  ### 1B-Write a program to implement a Binary Search algorithm. Write a search function which takes a SearchList as its first parameter and a Comparable as its second. If either parameter is null, or if the SearchList is empty, you               should return NULL.
 ###      implement the following algorithm: 
