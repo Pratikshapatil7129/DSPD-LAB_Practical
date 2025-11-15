@@ -32,15 +32,14 @@ void Union(struct Subset subsets[], int x, int y) {
     }
 }
 
-int compare(const void* a, const void* b) {
-    struct Edge* a1 = (struct Edge*)a;
-    struct Edge* b1 = (struct Edge*)b;
-    return a1->w > b1->w;
+int compare(const void *a, const void *b) {
+    return ((struct Edge*)a)->w - ((struct Edge*)b)->w;
 }
 
 void KruskalMST(struct Edge edges[], int V, int E) {
     struct Edge result[MAX];
     int e = 0, i = 0, total_weight = 0;
+
     qsort(edges, E, sizeof(edges[0]), compare);
 
     struct Subset* subsets = (struct Subset*)malloc(V * sizeof(struct Subset));
@@ -63,27 +62,42 @@ void KruskalMST(struct Edge edges[], int V, int E) {
 
     printf("\nEdges in the Minimum Spanning Tree:\n");
     for (i = 0; i < e; i++)
-        printf("%d -- %d  ==  %d\n", result[i].u, result[i].v, result[i].w);
+        printf("%d -- %d  Weight: %d\n", result[i].u, result[i].v, result[i].w);
 
     printf("\nTotal weight of MST = %d\n", total_weight);
+
     free(subsets);
 }
 
 int main() {
-    int V, E;
+    int V, adj[MAX][MAX];
     struct Edge edges[MAX];
+    int E = 0;
 
     printf("Enter number of vertices: ");
     scanf("%d", &V);
 
-    printf("Enter number of edges: ");
-    scanf("%d", &E);
+    printf("Enter adjacency matrix (0 for no edge):\n");
+    for (int i = 0; i < V; i++) {
+        for (int j = 0; j < V; j++) {
+            scanf("%d", &adj[i][j]);
+        }
+    }
 
-    printf("Enter edges (u v w):\n");
-    for (int i = 0; i < E; i++) {
-        scanf("%d%d%d", &edges[i].u, &edges[i].v, &edges[i].w);
+    // Convert matrix to edge list
+    for (int i = 0; i < V; i++) {
+        for (int j = i + 1; j < V; j++) {
+            if (adj[i][j] != 0) {
+                edges[E].u = i;
+                edges[E].v = j;
+                edges[E].w = adj[i][j];
+                E++;
+            }
+        }
     }
 
     KruskalMST(edges, V, E);
     return 0;
 }
+
+
