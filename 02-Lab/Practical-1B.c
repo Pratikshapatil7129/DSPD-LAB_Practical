@@ -1,54 +1,51 @@
-
 #include <stdio.h>
-int binarySearch(int arr[], int n, int key) {
-
-    if (arr == NULL || n == 0) {
-        printf("NULL\n");
-        return -1;
-    }
-
-    int start = 0, end = n - 1;
-
-    while (start <= end) {
-        int mid = (start + end) / 2;
-
-        printf("Mid value: %d at index %d\n", arr[mid], mid);
-        if (arr[mid] == key) {
-            printf("Value found at index %d\n", mid);
-            return 1;  
-        }
-       
-        else if (key > arr[mid]) {
-           
-            start = mid + 1;
-        }
-        
-        else {
-            
-            end = mid - 1;
-        }
-    }
-
-    
-    printf("Value not found.\n");
-    return 0; 
-}
 
 int main() {
-    int n, key;
+    int i, n, search, first = 0, last, mid, found = 0;
 
-    printf("Enter number of elements: ");
+    printf("Enter the range of the array: ");
     scanf("%d", &n);
 
-    int arr[n];
-    printf("Enter %d sorted elements:\n", n);
-    for (int i = 0; i < n; i++)
-        scanf("%d", &arr[i]);
+    int a[n];
+    printf("Enter %d sorted elements of array:\n", n);
+    for (i = 0; i < n; i++) {
+        scanf("%d", &a[i]);
+    }
 
-    printf("Enter value to search: ");
-    scanf("%d", &key);
+    last = n - 1;
 
-    binarySearch(arr, n, key);
+    printf("Enter element to search: ");
+    scanf("%d", &search);
+
+    while (first <= last) {
+        mid = (first + last) / 2;
+
+        printf("first of array is %d\n", first + 1);
+        printf("last of array is %d\n", last + 1);
+        printf("Mid of array is %d\n", mid + 1);
+        printf("The array is:\n");
+        for (i = first; i <= last; i++) {
+            printf("%d ", a[i]);
+        }
+        printf("\n\n");
+
+        if (a[mid] == search) {
+            printf("The element %d is located at position %d.\n", search, mid + 1);
+            found = 1;
+            break;
+        } else if (search < a[mid]) {
+            last = mid - 1;
+        } else {
+            first = mid + 1;
+        }
+    }
+
+    if (!found) {
+        printf("The element %d is not present in the array.\n", search);
+    }
 
     return 0;
 }
+
+
+    
